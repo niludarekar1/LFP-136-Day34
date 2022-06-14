@@ -1,0 +1,170 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databses
+    ->
+    ->
+    -> exit
+    -> exit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databses
+
+
+exit
+exit' at line 1
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| addressbook_servicedb |
+| candidates            |
+| database              |
+| information_schema    |
+| mydb                  |
+| mysql                 |
+| payroll_service       |
+| performance_schema    |
+| students              |
+| sys                   |
++-----------------------+
+10 rows in set (0.00 sec)
+
+mysql> create payroll_serviceDB;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'payroll_serviceDB' at line 1
+mysql> create payroll_serviceDB
+    -> exit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'payroll_serviceDB
+exit' at line 1
+mysql> CREATE DATABASE payroll_serviceDB;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> USE payroll_serviceDB;
+Database changed
+mysql> create table payroll_serviceDB(id int primary key auto_increment,name varchar(20),salary int,start_date date);
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> insert into payroll_serviceDB(name,salary,start_date) values('nilesh',100000,'1990-01-90');
+ERROR 1292 (22007): Incorrect date value: '1990-01-90' for column 'start_date' at row 1
+mysql> insert into payroll_serviceDB(name,salary,start_date) values('nilesh',100000,'1990-01-90');
+ERROR 1292 (22007): Incorrect date value: '1990-01-90' for column 'start_date' at row 1
+mysql> insert into payroll_serviceDB(name,salary,start_date) values('Rajesh',11000,'1990-10-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into payroll_serviceDB(name,salary,start_date) values('nilam',120000,'1991-09-01');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into payroll_serviceDB(name,salary,start_date) values('roshani',150000,'1992-12-12');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into payroll_serviceDB(name,salary,start_date) values('Nitu',150000,'1990-11-05');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * payroll_serviceDB;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'payroll_serviceDB' at line 1
+mysql> select * from payroll_serviceDB;
++----+---------+--------+------------+
+| id | name    | salary | start_date |
++----+---------+--------+------------+
+|  1 | Rajesh  |  11000 | 1990-10-10 |
+|  2 | nilam   | 120000 | 1991-09-01 |
+|  3 | roshani | 150000 | 1992-12-12 |
+|  4 | Nitu    | 150000 | 1990-11-05 |
++----+---------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select salary from payroll_serviceDB where name='Nitu';
++--------+
+| salary |
++--------+
+| 150000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select * from payroll_serviceDB where start_date between cast('1990-12-12' as date) and date(now());
++----+---------+--------+------------+
+| id | name    | salary | start_date |
++----+---------+--------+------------+
+|  2 | nilam   | 120000 | 1991-09-01 |
+|  3 | roshani | 150000 | 1992-12-12 |
++----+---------+--------+------------+
+2 rows in set (0.01 sec)
+
+mysql> select sum(salary) from payroll_serviceDB;
++-------------+
+| sum(salary) |
++-------------+
+|      431000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from payroll_serviceDB;
++-------------+
+| avg(salary) |
++-------------+
+| 107750.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from payroll_serviceDB;
++-------------+
+| min(salary) |
++-------------+
+|       11000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from payroll_serviceDB;
++-------------+
+| max(salary) |
++-------------+
+|      150000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> alter table payroll_serviceDB add column phoneno varchar(12),add column address varchar(50) default ('ahmednagar'),add column dept varchar(30) not null;
+Query OK, 4 rows affected (0.33 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> alter table payroll_serviceDB add column basic_pay int,add column deductions int,add column taxable_pay;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table payroll_serviceDB add column basic_pay int,add column deductions int,add column taxable_pay;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table payroll_serviceDB add column basic_pay int, add column deductions int, add column taxable_pay;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table payroll_serviceDB add column basic_pay int, add column deductions int, add column taxable_pay;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> desc payroll_serviceDB;
++------------+-------------+------+-----+----------------------+-------------------+
+| Field      | Type        | Null | Key | Default              | Extra             |
++------------+-------------+------+-----+----------------------+-------------------+
+| id         | int         | NO   | PRI | NULL                 | auto_increment    |
+| name       | varchar(20) | YES  |     | NULL                 |                   |
+| salary     | int         | YES  |     | NULL                 |                   |
+| start_date | date        | YES  |     | NULL                 |                   |
+| phoneno    | varchar(12) | YES  |     | NULL                 |                   |
+| address    | varchar(50) | YES  |     | _cp850\'ahmednagar\' | DEFAULT_GENERATED |
+| dept       | varchar(30) | NO   |     | NULL                 |                   |
++------------+-------------+------+-----+----------------------+-------------------+
+7 rows in set (0.02 sec)
+
+mysql> select * from payroll_serviceDB;
++----+---------+--------+------------+---------+------------+------+
+| id | name    | salary | start_date | phoneno | address    | dept |
++----+---------+--------+------------+---------+------------+------+
+|  1 | Rajesh  |  11000 | 1990-10-10 | NULL    | ahmednagar |      |
+|  2 | nilam   | 120000 | 1991-09-01 | NULL    | ahmednagar |      |
+|  3 | roshani | 150000 | 1992-12-12 | NULL    | ahmednagar |      |
+|  4 | Nitu    | 150000 | 1990-11-05 | NULL    | ahmednagar |      |
++----+---------+--------+------------+---------+------------+------+
+4 rows in set (0.00 sec)
+
+mysql>
